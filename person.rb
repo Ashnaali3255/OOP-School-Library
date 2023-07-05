@@ -1,6 +1,6 @@
 class Person
-  attr_accessor :name, :age
-  attr_reader :id, :rentals
+  attr_accessor :name, :age, :rentals
+  attr_reader :id
 
   def initialize(age, name = 'Unknown', parent_permission: true)
     @id = Random.rand(1..1000)
@@ -12,6 +12,10 @@ class Person
 
   def can_use_services?
     of_age? || @parent_permission
+  end
+
+  def add_rental(book, date)
+    Rental.new(date, book, self)
   end
 
   private
