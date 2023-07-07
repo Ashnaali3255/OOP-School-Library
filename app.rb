@@ -1,6 +1,8 @@
-require_relative 'person'
-require_relative 'book'
-require_relative 'rental'
+require_relative './person'
+require_relative './book'
+require_relative './rental'
+require_relative './student'
+require_relative './teacher'
 
 class App
   attr_accessor :people, :books, :rentals
@@ -35,22 +37,22 @@ class App
 
     case role
     when 'S'
-      create_student(name, age)
+      create_student(age, name)
     when 'T'
-      create_teacher(name, age)
+      create_teacher(age, name)
     else
       puts 'Invalid input. Please try again.'
     end
   end
 
-  def create_student(name, age)
+  def create_student(age, name)
     student = Student.new(age, name)
     @people << student
     puts "Student created: #{student.name} (ID: #{student.id})"
     puts ''
   end
 
-  def create_teacher(name, age)
+  def create_teacher(age, name)
     teacher = Teacher.new(age, name)
     @people << teacher
     puts "Teacher created: #{teacher.name} (ID: #{teacher.id})"
@@ -114,6 +116,10 @@ class App
     puts ''
   end
 
+  def quit_app
+    puts "Exiting, thanks for using this app!\n\n"
+ end
+
   def run
     puts 'Welcome to the Console App!'
     puts ''
@@ -137,6 +143,7 @@ class App
         list_rentals_for_person
       when 7
         quit_app
+        break
       else
         puts 'Invalid choice. Please try again.'
       end
@@ -160,6 +167,3 @@ class App
     gets.chomp.to_i
   end
 end
-
-app = App.new
-app.run
