@@ -35,30 +35,33 @@ class App
     puts 'Is the person a student or a teacher? (S/T)'
     role = gets.chomp.upcase
 
-    case role
+    case role 
     when 'S'
-      create_student(age, name)
+      puts "Enter a person's classroom"
+      classroom = gets.chomp
+      create_student(age, name, classroom)
     when 'T'
-      create_teacher(age, name)
+      puts "Enter a person's specialization"
+      specialization = gets.chomp
+      create_teacher(age, name, specialization)
     else
       puts 'Invalid input. Please try again.'
     end
   end
 
-  def create_student(age, name)
-    student = Student.new(age, name)
+  def create_student(age, name, classroom)
+    student = Student.new(age, name, classroom)
     @people << student
     puts "Student created: #{student.name} (ID: #{student.id})"
     puts ''
   end
-
-  def create_teacher(age, name)
-    teacher = Teacher.new(age, name)
+  def create_teacher(age, name, specialization)
+    teacher = Teacher.new(age, name, specialization)
     @people << teacher
     puts "Teacher created: #{teacher.name} (ID: #{teacher.id})"
     puts ''
   end
-
+  
   def create_book
     puts "Enter the book's title:"
     title = gets.chomp
