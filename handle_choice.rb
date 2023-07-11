@@ -13,16 +13,19 @@ def handle_choice(choice, app)
     create_item(choice, app)
   end
 end
+
  def list_books(app)
   puts 'List of Books:'
   app.list_books
   puts ''
 end
+
  def list_people(app)
   puts 'List of People:'
   app.list_people
   puts ''
 end
+
  def list_rentals_for_person(app)
   puts "Enter the person's ID to list their rentals:"
   person_id = gets.chomp.to_i

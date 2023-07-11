@@ -13,11 +13,11 @@ class App
     @rentals = []
   end
 
-  # def list_books
-  #   puts 'List of Books:'
-  #   @books.each { |book| puts "#{book.title} by #{book.author}" }
-  #   puts ''
-  # end
+  def list_books
+    puts 'List of Books:'
+    @books.each { |book| puts "#{book.title} by #{book.author}" }
+    puts ''
+  end
 
   def list_people
     puts 'List of People:'
@@ -109,6 +109,10 @@ class App
     rentals = @rentals.select { |rental| rental.person.id == person.id }
     rentals.each { |rental| puts "#{rental.book.title} by #{rental.book.author} (Rental Date: #{rental.date})" }
     puts ''
+  end
+
+  def find_person_by_id(id)
+    @people.find { |person| person.id == id }
   end
 
   def quit_app
