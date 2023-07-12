@@ -14,32 +14,34 @@ def handle_choice(choice, app)
   end
 end
 
- def list_books(app)
+def list_books(app)
   puts 'List of Books:'
   app.list_books
   puts ''
 end
 
- def list_people(app)
+def list_people(app)
   puts 'List of People:'
   app.list_people
   puts ''
 end
 
- def list_rentals_for_person(app)
+def list_rentals_for_person(app)
   puts "Enter the person's ID to list their rentals:"
   person_id = gets.chomp.to_i
-   person = app.find_person_by_id(person_id)
+  person = app.find_person_by_id(person_id)
   if person.nil?
     puts "Person not found with ID: #{person_id}"
     return
   end
-   app.list_rentals_for_person(person)
+  app.list_rentals_for_person(person)
 end
- def quit_app
+
+def quit_app
   puts 'Exiting the Console App...'
 end
- def create_item(choice, app)
+
+def create_item(choice, app)
   case choice
   when 3
     app.create_person
@@ -51,6 +53,7 @@ end
     handle_invalid_choice
   end
 end
- def handle_invalid_choice
+
+def handle_invalid_choice
   puts 'Invalid choice. Please try again.'
 end

@@ -24,7 +24,7 @@ class App
     @people.each { |person| puts "#{person.name} (ID: #{person.id})" }
     puts ''
   end
-  
+
   def create_person
     puts "Enter the person's name:"
     name = gets.chomp
