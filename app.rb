@@ -104,82 +104,18 @@ class App
     puts ''
   end
 
-  def list_rentals_for_person
-    puts "Enter the person's ID to list their rentals:"
-    person_id = gets.chomp.to_i
-
-    person = @people.find { |p| p.id == person_id }
-    if person.nil?
-      puts "Person not found with ID: #{person_id}"
-      return
-    end
-
+  def list_rentals_for_person(person)
     puts "Rentals for #{person.name} (ID: #{person.id}):"
     rentals = @rentals.select { |rental| rental.person.id == person.id }
     rentals.each { |rental| puts "#{rental.book.title} by #{rental.book.author} (Rental Date: #{rental.date})" }
     puts ''
   end
 
+  def find_person_by_id(id)
+    @people.find { |person| person.id == id }
+  end
+
   def quit_app
     puts "Exiting, thanks for using this app!\n\n"
-  end
-
-  def run
-    puts 'Welcome to the Console App!'
-    loop do
-      show_menu
-      choice = read_choice
-      handle_choice(choice)
-      break if choice == 7
-    end
-  end
-
-  private
-
-  def show_menu
-    puts 'Please select an option:'
-    puts '1. List all books'
-    puts '2. List all people'
-    puts '3. Create a person'
-    puts '4. Create a book'
-    puts '5. Create a rental'
-    puts '6. List rentals for a person'
-    puts '7. Quit'
-  end
-
-  def handle_choice(choice)
-    case choice
-    when 1
-      list_books
-    when 2
-      list_people
-    when 6
-      list_rentals_for_person
-    when 7
-      quit_app
-    else
-      create_item(choice)
-    end
-  end
-
-  def create_item(choice)
-    case choice
-    when 3
-      create_person
-    when 4
-      create_book
-    when 5
-      create_rental
-    else
-      handle_invalid_choice
-    end
-  end
-
-  def handle_invalid_choice
-    puts 'Invalid choice. Please try again.'
-  end
-
-  def read_choice
-    gets.chomp.to_i
   end
 end
